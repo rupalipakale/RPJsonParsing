@@ -10,6 +10,8 @@
 #import "ArticleTableViewCell.h"
 #import "DetailViewController.h"
 
+#define KEY @"efe99de73d1d49608eb3d4e87c536b26"
+#define BASE_PATH @"https://newsapi.org/v1/articles?"
 @interface ViewController ()
 
 @end
@@ -36,22 +38,26 @@
 
 -(void)loadDataOnTableView
 {
-    NSString *urlString=[NSString stringWithFormat:@"https://newsapi.org/v1/articles?source=techcrunch&apiKey=efe99de73d1d49608eb3d4e87c536b26"];
+    NSString *urlString=[NSString stringWithFormat:@"%@source=techcrunch&apiKey=%@",BASE_PATH,KEY];
     NSURL *url=[NSURL URLWithString:urlString];
     NSURLSession *session=[NSURLSession sharedSession];
     NSURLSessionDataTask *dataTask=[session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
         if(response)
         {
           NSDictionary *responceDictionary=[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
             NSLog(@"%@",responceDictionary);
            articleArray=[responceDictionary valueForKey:@"articles"];
-           if([articleArray count])
-           {
-               [_articleTableView reloadData];
-               [self.tableViewActivityIndicator stopAnimating];
-               [self.tableViewActivityIndicator setHidesWhenStopped:YES];
-               
-           }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if([articleArray count])
+                {
+                    [_articleTableView reloadData];
+                    [self.tableViewActivityIndicator stopAnimating];
+                    [self.tableViewActivityIndicator setHidesWhenStopped:YES];
+                    
+                }
+            });
+           
         }
         else
         {
@@ -76,27 +82,28 @@
     {
         cell=[[ArticleTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ArticleCell"];
     }
-    cell.lblAuthor.text=[[articleArray objectAtIndex:indexPath.row] valueForKey:@"author"];
-   
-    cell.lblDescription.text=[[articleArray objectAtIndex:indexPath.row] valueForKey:@"description"];
-    
-    NSString *urlToImage=[[articleArray objectAtIndex:indexPath.row] valueForKey:@"urlToImage"];
-    NSData *imageData=[NSData dataWithContentsOfURL:[NSURL URLWithString:urlToImage]];
-    UIImage *urlImage=[UIImage imageWithData:imageData];
-    cell.urlImageView.image=urlImage;
+    [cell loaddata:[articleArray objectAtIndex:indexPath.row]];
     return cell;
 }
 
 //TableView Delegate method
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIStoryboard *storyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    DetailViewController *detailViewController=[storyBoard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    selectedIndex=indexPath;
+    [self performSegueWithIdentifier:@"DetailSegue" sender:nil];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     
-    detailViewController.strAuthor=[[articleArray objectAtIndex:indexPath.row] valueForKey:@"author"];
-    detailViewController.strDescription=[[articleArray objectAtIndex:indexPath.row] valueForKey:@"description"];
-    detailViewController.urlImage=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[articleArray objectAtIndex:indexPath.row] valueForKey:@"urlToImage"]]]];
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    if([segue.identifier isEqualToString:@"DetailSegue"])
+    {
+        DetailViewController *DetailVC=[segue destinationViewController];
+        
+        DetailVC.strAuthor=[[articleArray objectAtIndex:selectedIndex.row] valueForKey:@"author"];
+        DetailVC.strDescription=[[articleArray objectAtIndex:selectedIndex.row] valueForKey:@"description"];
+        DetailVC.strImage=[[articleArray objectAtIndex:selectedIndex.row] valueForKey:@"urlToImage"];
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

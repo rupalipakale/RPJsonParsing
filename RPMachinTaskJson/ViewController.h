@@ -11,6 +11,7 @@
 @interface ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *articleArray;
+    NSIndexPath *selectedIndex;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *articleTableView;

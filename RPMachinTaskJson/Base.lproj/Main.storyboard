@@ -55,7 +55,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fd6-r4-aZR">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="images.png" translatesAutoresizingMaskIntoConstraints="NO" id="fd6-r4-aZR">
                                             <rect key="frame" x="8" y="8" width="96" height="123"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -76,11 +76,12 @@
                     <navigationItem key="navigationItem" id="vKV-kO-oSs"/>
                     <connections>
                         <outlet property="articleTableView" destination="z20-Hc-xuh" id="NwA-pw-tdL"/>
+                        <segue destination="BHW-c4-RTq" kind="show" identifier="DetailSegue" id="ZWT-5d-biL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1410.4000000000001" y="113.79310344827587"/>
+            <point key="canvasLocation" x="-1529" y="114"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="sXr-fZ-Q8P">
@@ -94,6 +95,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Aj3-yJ-Hk5">
+                                <rect key="frame" x="187" y="313" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.094655074179172516" green="0.14937922358512878" blue="0.59926629066467285" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7QD-6l-lA5">
                                 <rect key="frame" x="25" y="315" width="89" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -130,6 +136,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="detailActivityIndicator" destination="Aj3-yJ-Hk5" id="agl-Ic-bur"/>
                         <outlet property="lblAuthor" destination="PvM-Ai-z1x" id="OPT-0Y-l6i"/>
                         <outlet property="lblDescription" destination="Xf9-Eb-9t1" id="k3x-kY-lsN"/>
                         <outlet property="urlImageView" destination="82Z-j7-sL1" id="r5x-af-teG"/>
@@ -137,7 +144,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNS-vI-Cx8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-591.20000000000005" y="113.79310344827587"/>
+            <point key="canvasLocation" x="-812" y="114"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="images.png" width="259" height="195"/>
+    </resources>
 </document>

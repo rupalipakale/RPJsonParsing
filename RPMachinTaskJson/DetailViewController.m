@@ -18,6 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title=@"Article Detail";
+    [self.detailActivityIndicator startAnimating];
     [self loadData];
     
 }
@@ -26,7 +27,16 @@
 {
     self.lblAuthor.text=self.strAuthor;
     self.lblDescription.text=self.strDescription;
-    self.urlImageView.image=self.urlImage;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSURL *urlImage=[NSURL URLWithString:self.strImage];
+        NSData *imgData=[NSData dataWithContentsOfURL:urlImage];
+        
+        self.urlImageView.image=[UIImage imageWithData:imgData];
+        [self.detailActivityIndicator stopAnimating];
+        [self.detailActivityIndicator setHidesWhenStopped:YES];
+    });
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

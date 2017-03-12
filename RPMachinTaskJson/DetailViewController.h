@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface DetailViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *detailActivityIndicator;
 
 @property (strong, nonatomic) IBOutlet NSString *strAuthor;
 @property (strong, nonatomic) IBOutlet NSString *strDescription;
-@property (strong, nonatomic) IBOutlet UIImage *urlImage;
+@property (strong, nonatomic) IBOutlet NSString *strImage;
 @property (strong, nonatomic) IBOutlet UILabel *lblAuthor;
 @property (strong, nonatomic) IBOutlet UILabel *lblDescription;
 @property (strong, nonatomic) IBOutlet UIImageView *urlImageView;

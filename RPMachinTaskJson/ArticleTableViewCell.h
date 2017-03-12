@@ -12,5 +12,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblAuthor;
 @property (strong, nonatomic) IBOutlet UILabel *lblDescription;
 @property (strong, nonatomic) IBOutlet UIImageView *urlImageView;
-
+-(void)loaddata:(NSDictionary *)dict;
 @end

@@ -16,6 +16,7 @@
 		6B97373C1E62B84900047EE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B97373A1E62B84900047EE0 /* LaunchScreen.storyboard */; };
 		6B9737451E62B8CE00047EE0 /* ArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9737441E62B8CE00047EE0 /* ArticleTableViewCell.m */; };
 		6B9737481E62BA0500047EE0 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9737471E62BA0500047EE0 /* DetailViewController.m */; };
+		6BC9F7161E6AACCC00DECF1E /* images.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC9F7151E6AACCC00DECF1E /* images.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		6B9737441E62B8CE00047EE0 /* ArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTableViewCell.m; sourceTree = "<group>"; };
 		6B9737461E62BA0500047EE0 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		6B9737471E62BA0500047EE0 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		6BC9F7151E6AACCC00DECF1E /* images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		6B9737281E62B84800047EE0 /* RPMachinTaskJson */ = {
 			isa = PBXGroup;
 			children = (
+				6BC9F7151E6AACCC00DECF1E /* images.png */,
 				6B97372C1E62B84800047EE0 /* AppDelegate.h */,
 				6B97372D1E62B84800047EE0 /* AppDelegate.m */,
 				6B97372F1E62B84800047EE0 /* ViewController.h */,
@@ -153,6 +156,7 @@
 				6B97373C1E62B84900047EE0 /* LaunchScreen.storyboard in Resources */,
 				6B9737391E62B84900047EE0 /* Assets.xcassets in Resources */,
 				6B9737341E62B84800047EE0 /* Main.storyboard in Resources */,
+				6BC9F7161E6AACCC00DECF1E /* images.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +329,7 @@
 				6B9737421E62B84900047EE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
